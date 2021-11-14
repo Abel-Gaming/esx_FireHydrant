@@ -6,7 +6,7 @@ Connect to hydrants to fight fires!
 - [bt-target](https://github.com/brentN5/bt-target)
 
 ## BT-Target Code
-Place the following code at the bottom of the client.lua file or bt-target
+Place the following code at the bottom of the client.lua file of bt-target
 ```
 -- Fire Hydrants --
 Citizen.CreateThread(function()
