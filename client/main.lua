@@ -9,6 +9,25 @@ Citizen.CreateThread(function()
 	end
 end)
 
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(1)
+		for k,v in pairs(Config.HydrantModels) do
+			local nearesthydrant = GetClosestObjectOfType(GetEntityCoords(PlayerPedId()), Config.ConnectionDistance, v, false, true, true)
+			local hydrant = GetEntityModel(nearesthydrant)
+			if hydrant == v and playerAlreadyConnected == false then
+				while #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(nearesthydrant)) <= Config.ConnectionDistance and playerAlreadyConnected == false do
+					Citizen.Wait(0)
+					ESX.Game.Utils.DrawText3D(GetEntityCoords(nearesthydrant), "Press ~y~[E]~s~ to connect to hydrant")
+					if IsControlJustReleased(0, 51) then
+						TriggerEvent('esx_FireHydrant:Connect')
+					end
+				end
+			end
+		end
+	end
+end)
+
 -- Check the distance from the connected hydrant
 Citizen.CreateThread(function()
 	while not NetworkIsSessionStarted() do
