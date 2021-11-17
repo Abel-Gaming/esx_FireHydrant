@@ -2,6 +2,7 @@ ESX              = nil
 local playerAlreadyConnected = false
 local ConnectedHydrantID = nil
 
+-- Base ESX
 Citizen.CreateThread(function()
 	while ESX == nil do
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -9,6 +10,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
+-- Connect without bt-target
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
@@ -43,8 +45,26 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
 		if playerAlreadyConnected then
+
+			-- Get info
 			local playerCoords = GetEntityCoords(PlayerPedId())
 			local hydrantCoords = GetEntityCoords(ConnectedHydrantID)
+			
+			-- Draw Distance Text
+			SetTextFont(0)
+        	SetTextScale(0.4, 0.4)
+        	SetTextEntry("STRING")
+        	AddTextComponentString('~y~Hose Distance: ~g~' .. math.floor(#(playerCoords - hydrantCoords)) .. '~w~/~r~' .. Config.MaxDistance) -- Main Text string
+        	DrawText(0.1725, 0.8)
+			-- End Draw Distance Text
+
+			-- Auto Disconnect Warning
+			if #(playerCoords - hydrantCoords) >= Config.MaxDistance - Config.DistanceWarningValue and Config.DistanceWarning == true then
+				-- Show Notification
+				ESX.ShowNotification('~y~[WARNING]~w~ You are 2.0 meters away from auto disconnect')
+			end
+			
+			-- Auto Disconnect
 			if #(playerCoords - hydrantCoords) >= Config.MaxDistance then
 				-- Show Notification
 				ESX.ShowNotification('~y~[WARNING]~w~ You have been auto-disconnected from the hydrant due to distance')
