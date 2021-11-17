@@ -7,6 +7,7 @@ Config.HydrantModels = {
     -97646180
 }
 
+Config.Use3DText = false
 Config.ConnectionDistance = 2.0 -- Only used if not using bt-target (how close you have to be)
 Config.MaxDistance = 5.0 -- Max distance you can get from the hydrant before auto-disconnect
 
