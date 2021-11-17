@@ -18,7 +18,13 @@ Citizen.CreateThread(function()
 			if hydrant == v and playerAlreadyConnected == false then
 				while #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(nearesthydrant)) <= Config.ConnectionDistance and playerAlreadyConnected == false do
 					Citizen.Wait(0)
-					ESX.Game.Utils.DrawText3D(GetEntityCoords(nearesthydrant), "Press ~y~[E]~s~ to connect to hydrant")
+
+					if Config.Use3DText then
+						ESX.Game.Utils.DrawText3D(GetEntityCoords(nearesthydrant), "Press ~y~[E]~s~ to connect to hydrant")
+					else
+						ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to connect to hydrant')
+					end
+					
 					if IsControlJustReleased(0, 51) then
 						TriggerEvent('esx_FireHydrant:Connect')
 					end
@@ -71,7 +77,11 @@ Citizen.CreateThread(function()
 			while #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(ConnectedHydrantID)) <= 2.0 do
 				Citizen.Wait(0)
 				if playerAlreadyConnected then
-					ESX.Game.Utils.DrawText3D(GetEntityCoords(ConnectedHydrantID) + 1, "Press ~y~[E]~s~ to disconnect from hydrant")
+					if Config.Use3DText then
+						ESX.Game.Utils.DrawText3D(GetEntityCoords(ConnectedHydrantID) + 1, "Press ~y~[E]~s~ to disconnect from hydrant")
+					else
+						ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to disconnect from hydrant')
+					end
 					if IsControlJustReleased(0, 51) then
 						-- Toggle Hose
 						TriggerEvent('dubCase-HoseFix:Toggle')
