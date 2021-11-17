@@ -3,7 +3,7 @@ Connect to hydrants to fight fires!
 
 ## Dependencies
 - [Personal fork of dubCase-HoseFix - credit to symeRobinson for the original release](https://github.com/Abel-Gaming/dubCase-HoseFix)
-- [bt-target](https://github.com/brentN5/bt-target)
+- [bt-target](https://github.com/brentN5/bt-target) (Optional)
 
 ## BT-Target Code
 Place the following code at the bottom of the client.lua file of bt-target
