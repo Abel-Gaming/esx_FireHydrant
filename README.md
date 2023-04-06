@@ -1,8 +1,8 @@
-# Fire Hydrant Script [ESX]
+# Fire Hydrant Script [STANDALONE]
 Connect to hydrants to fight fires!
 
 ## Dependencies
-- [Personal fork of dubCase-HoseFix - credit to symeRobinson for the original release](https://github.com/Abel-Gaming/dubCase-HoseFix)
+- [HoseLS](https://github.com/LondonStudios/HoseLS)
 - [bt-target](https://github.com/brentN5/bt-target) (Optional)
 
 ## BT-Target Code
