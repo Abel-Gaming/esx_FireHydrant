@@ -1,4 +1,4 @@
-# Fire Hydrant Script [STANDALONE]
+# Fire Hydrant Script [ESX]
 Connect to hydrants to fight fires!
 
 ## Dependencies
